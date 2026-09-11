@@ -20,7 +20,7 @@ model = load_model()
 # Header
 # ---------------------------------------------------------
 st.title("💻 Laptop Price Predictor")
-st.write("Laptop price predictor model developed by MD.Nazmul Hasan Khan Mahmud।")
+st.write("Laptop price predictor model developed by MD.Nazmul Hasan Khan Mahmud")
 
 st.divider()
 
