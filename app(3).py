@@ -7,7 +7,7 @@ import numpy as np
 # ------------------------------
 @st.cache_resource
 def load_model():
-    return joblib.load("weather(2).joblib")
+    return joblib.load("weather_model(2).joblib")
 
 model = load_model()
 
