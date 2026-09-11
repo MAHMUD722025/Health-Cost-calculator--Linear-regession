@@ -1,6 +1,7 @@
 import streamlit as st
 import joblib
 import numpy as np
+from sklearn.preprocessing import PolynomialFeatures
 
 # ------------------------------
 # Load model
@@ -42,10 +43,17 @@ st.divider()
 if st.button("predict heat index", use_container_width=True):
     features = np.array([[temperature, humidity, pressure, wind_speed,
                            wind_direction, dew_point, cloud_cover]])
-    prediction = model.predict(features)[0]
+
+    # This model was trained on degree-2 polynomial features
+    # (7 raw inputs -> 36 expanded terms), so we must expand
+    # the raw inputs the same way before predicting.
+    poly = PolynomialFeatures(degree=2, include_bias=True)
+    features_poly = poly.fit_transform(features)
+
+    prediction = model.predict(features_poly)[0]
 
     st.success(f"🌡️ Predicted Heat Index: **{prediction:.2f}°C**")
 
 st.divider()
-st.caption("Model: Linear Regression | Target: Heat Index | Features: Temperature, Humidity, "
+st.caption("Model: polynomial linear Regression | Target: Heat Index | Features: Temperature, Humidity, "
            "Atmospheric Pressure, Wind_Speed, Wind_Direction, Dew_Point, Cloud_Cover | this model is developed by MD.Nazmul Hasan Khan Mahmud")
