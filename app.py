@@ -51,4 +51,4 @@ if st.button("Predict Laptop price🔍", use_container_width=True):
 
     prediction = model.predict(input_df)[0]
 
-    st.success(f"### Estimated price : {prediction:,.2f}")
+    st.success(f"### Estimated price in BDT : {prediction:,.2f}")
